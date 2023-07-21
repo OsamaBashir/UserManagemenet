@@ -21,27 +21,59 @@
     border-radius: 3%;
     padding-left: 3%;
     width: 300px;
-    height: 350px;
+    height: 410px;
     background-color:white;
     margin: 30px;
   }
+  @media (max-width: 768px) {
+    .flexbox {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: left;
+      border-radius: 3%;
+      padding-left: 3%;
+      width: 465px;
+      height: 410px;
+      background-color:white;
+      margin: 13px;
+    }
+  }
+
   .flexbox-general {
     display: flex;
     flex-direction: row;
     background-color: lightgray;
-    margin: 10px;
-    border-radius: 3%;
+    border-radius: 3%;  
   }
+  @media (max-width: 768px) {
+  .flexbox-general {
+    display: flex;
+    flex-direction: column;
+    background-color: lightgray;
+    border-radius: 3%;  
+  }
+}
   .flexbox2 {
     display: flex;
     flex-direction: column;
     width: 700px;
-    height: 350px;
+    height: 410px;
     background-color:white;
     margin: 30px;
     margin-left: 0%;
     border-radius: 3%;
   }
+
+  @media (max-width: 768px) {
+    .flexbox2 {
+      flex-direction: column;
+      width: 480px;
+      margin: 13px;
+    }
+  }
+
   .btn-primary{
     justify-content: center;
     align-items: center;
@@ -59,6 +91,18 @@
     border-color: red;
   }
   .user-list-container {
-    max-height: 300px; /* Set the maximum height for the container */
+    max-height: 360px; /* Set the maximum height for the container */
     overflow-y: auto; /* Enable vertical scrolling */
+  }
+  .select-role{
+
+    width:171px;
+    height: 22px;
+    margin-top: 2%;
+  }
+  .custom-message{
+     font-size: x-small;
+     margin-top: 0%;
+     margin-bottom: 0%;
+     color: red;
   }

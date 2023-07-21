@@ -1,0 +1,32 @@
+.custom-tab{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: lightgray;
+    width:200px;
+    border-radius: 5%;
+    padding: 20px;
+    margin-left: 40%;
+}
+.custom-button-register{
+   background-color: aqua;
+   border: none;
+   padding: 7px;
+   border-radius: 5px;
+   margin-right: 5px;
+}
+.custom-button-orders{
+    background-color: honeydew;
+    border: none;
+    padding: 7px;
+    border-radius: 5px;
+    margin-right: 5px;
+ }
+ .custom-button-customers{
+    background-color: darkseagreen;
+    border: none;
+    padding: 7px;
+    border-radius: 5px;
+    margin-right: 5px;
+ }

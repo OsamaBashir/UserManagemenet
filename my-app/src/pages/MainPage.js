@@ -4,15 +4,19 @@ import InputField from '../components/Common/InputField/InputField';
 import MainComponent from '../components/MainComponent/MainComponent';
 
 const MainPage = () => {
+  
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    role: ''
 
   })
   const [isValid, setIsValid] = useState(true);
+  const [isError,setIsError] = useState(false);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [firstNameValid, setFirstNameValid] = useState(true);
   const [lastNameValid, setLastNameValid] = useState(true);
   const [isEmailValid, setIsEmailValid] = useState(true);
@@ -23,6 +27,7 @@ const MainPage = () => {
   
   const handleSubmit = (event) => {
     event.preventDefault();
+    setIsFormSubmitted(true)
     const validate = formData.email.includes('@');
     if(formData.email === ''){
       setIsValid(false); 
@@ -61,9 +66,10 @@ const MainPage = () => {
   else{
     setLastNameValid(false);
   }
-  if(formData.email && isEmailValid && formData.password && isPasswordValid && formData.firstName && firstNameValid && formData.lastName && lastNameValid && formData.confirmPassword && isConfirmPasswordValid){
+  if(formData.email && emailValidity && formData.password && isPasswordValid && formData.firstName && firstNameValid && formData.lastName && lastNameValid && formData.confirmPassword && isConfirmPasswordValid && formData.role){
    if (selectedUser === null) {
       // Add new user
+      console.log(formData);
       const newUser = formData;
       setUsers([...users, newUser]);
     } else {
@@ -79,7 +85,8 @@ const MainPage = () => {
       lastName: '',
       email: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      role: ''
      });
    } 
   };
@@ -109,6 +116,13 @@ const MainPage = () => {
       ...prev,
       [name]: value
     }));
+    if (name === 'password' || name === 'confirmPassword') {
+      if (formData.password !== formData.confirmPassword) {
+        setIsError(true);
+      } else {
+        setIsError(false);
+      }
+    }
   }
 
   return (
@@ -145,28 +159,37 @@ const MainPage = () => {
             <InputField 
               type="password"
               name="password"
-              className={!isPasswordValid ? 'redBorder' : ''}
+              className={(isError || (isFormSubmitted && !formData.password)) ? 'redBorder' : ''}
               value={formData.password}
               onChange={(e) => handleChange(e)}
             />
+             {isError &&
+            <p className='custom-message'>Password and ConfirmPassword must be same</p> }
             <label htmlFor="confirmPassword">Confirm Password:</label><br />
             <InputField 
               type="password"
               name="confirmPassword"
-              className={!passwordValidity ? 'redBorder' : ''}
+              className={(isError || (isFormSubmitted && !formData.confirmPassword)) ? 'redBorder' : ''}
               value={formData.confirmPassword}
               onChange={(e) => handleChange(e)}
             />
+             {isError &&
+            <p className='custom-message'>Password and ConfirmPassword must be same</p> }
+             <label htmlFor="role">Role:</label><br />
+            <select className='select-role' name='role' value={formData.role} onChange={(e) => handleChange(e)}>
+            <option value=""> </option>
+              <option value="Admin">Admin</option>
+              <option value="User">User</option>
+              <option value="Employee">Employee</option>
+            </select><br />
           <button type="submit" className='btn-primary' onClick={handleSubmit}>Register</button>
        </form>
        
         </div>
        <div className='flexbox2'> 
         <h2>Registered Users</h2>
-        <div className="user-list-container">
-        <table>  
+        <div className="user-list-container">  
          <MainComponent user = {users} deletedUser = {deleteItem} editUser={(index) => editUser(index)}/>
-        </table>
         </div>
         </div>
         </div>
