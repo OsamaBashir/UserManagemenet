@@ -11,6 +11,29 @@
     overflow-y: auto;
     font-size: x-small;
 }
+.flexbox-products{
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 850px;
+  height: 250px;
+  margin-top: 25px;
+  border-radius: 5px;
+}
+.selectedproducts{
+  display: flex;
+  flex-direction: row;
+  background-color: lightgray;
+  width: 800px;
+  height: 200px;
+  margin-left: 2.6%;
+  margin-top: 25px;
+  border-radius: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: x-small;
+}
+
 .custom-load{
     margin-top: 120px;
     margin-left: 350px;
@@ -34,4 +57,25 @@
   .orderTable td + td {
     border-left: 1px solid black;
   }
+
+  .orderTable tr:hover {
+        background-color: #ffff99;
+  }
+
+  .productTable {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .productTable th,
+  .productTable td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .productTable th {
+    background-color: #f2f2f2;
+  }
+
   

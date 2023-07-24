@@ -16,7 +16,6 @@ const MainPage = () => {
   })
   const [isValid, setIsValid] = useState(true);
   const [isError,setIsError] = useState(false);
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [firstNameValid, setFirstNameValid] = useState(true);
   const [lastNameValid, setLastNameValid] = useState(true);
   const [isEmailValid, setIsEmailValid] = useState(true);
@@ -27,7 +26,6 @@ const MainPage = () => {
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    setIsFormSubmitted(true)
     const validate = formData.email.includes('@');
     if(formData.email === ''){
       setIsValid(false); 
@@ -64,9 +62,9 @@ const MainPage = () => {
       setLastNameValid(true);
   }
   else{
-    setLastNameValid(false);
+     setLastNameValid(false);
   }
-  if(formData.email && emailValidity && formData.password && isPasswordValid && formData.firstName && firstNameValid && formData.lastName && lastNameValid && formData.confirmPassword && isConfirmPasswordValid && formData.role){
+  if(formData.email && emailValidity && formData.password && isPasswordValid && formData.firstName && firstNameValid && formData.lastName && lastNameValid && formData.confirmPassword && isConfirmPasswordValid && formData.role && !isError){
    if (selectedUser === null) {
       // Add new user
       console.log(formData);
@@ -108,7 +106,7 @@ const MainPage = () => {
     setUsers(updatedTodos);
   };
    const emailValidity = isValid && isEmailValid;
-   const passwordValidity = isConfirmPasswordValid && isPasswordValid;
+   //const passwordValidity = isConfirmPasswordValid && isPasswordValid;
 
   const handleChange = (evt) => {
     const { name, value }= evt.target;
@@ -116,12 +114,12 @@ const MainPage = () => {
       ...prev,
       [name]: value
     }));
-    if (name === 'password' || name === 'confirmPassword') {
-      if (formData.password !== formData.confirmPassword) {
-        setIsError(true);
-      } else {
-        setIsError(false);
-      }
+    if (name === 'password' || name === 'confirmPassword') {    
+          if (formData.password !== formData.confirmPassword) {
+            setIsError(false);
+          } else {
+            setIsError(true);
+          }
     }
   }
 
@@ -159,7 +157,7 @@ const MainPage = () => {
             <InputField 
               type="password"
               name="password"
-              className={(isError || (isFormSubmitted && !formData.password)) ? 'redBorder' : ''}
+              className={(isError || !isPasswordValid) ? 'redBorder' : ''}
               value={formData.password}
               onChange={(e) => handleChange(e)}
             />
@@ -169,7 +167,7 @@ const MainPage = () => {
             <InputField 
               type="password"
               name="confirmPassword"
-              className={(isError || (isFormSubmitted && !formData.confirmPassword)) ? 'redBorder' : ''}
+              className={(isError || !isPasswordValid) ? 'redBorder' : ''}
               value={formData.confirmPassword}
               onChange={(e) => handleChange(e)}
             />
