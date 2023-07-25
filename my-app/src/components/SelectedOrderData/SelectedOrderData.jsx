@@ -82,6 +82,8 @@ function SelectedOrderData({apiData}) {
        )
        )}
         </div>
+        {response && 
+        <div className='product-container'>
         <div className='flexbox-products'>
         <div className='selectedproducts'>
         {response && (
@@ -111,6 +113,8 @@ function SelectedOrderData({apiData}) {
           )}
       </div>
       </div>
+      </div>
+}
       </>
    
   )

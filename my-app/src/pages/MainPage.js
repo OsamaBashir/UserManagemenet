@@ -115,11 +115,14 @@ const MainPage = () => {
       [name]: value
     }));
     if (name === 'password' || name === 'confirmPassword') {    
-          if (formData.password !== formData.confirmPassword) {
-            setIsError(false);
-          } else {
-            setIsError(true);
-          }
+      if (name === 'confirmPassword') {
+        if (formData.password !== value) {
+          setIsError(true);
+        } else {
+          setIsError(false);
+        }
+      }
+        
     }
   }
 

@@ -11,14 +11,27 @@
     overflow-y: auto;
     font-size: x-small;
 }
+.product-container {
+
+  margin-top: 40px;
+  margin-left: -31px;
+  background-color: lightgray;
+  border-radius: 5px;
+  width: 900px;
+  height: 250px;
+}
 .flexbox-products{
   display: flex;
   flex-direction: column;
   background-color: white;
+  margin-top: 2%;
+  margin-left: 3%;
   width: 850px;
-  height: 250px;
+  height: 240px;
   margin-top: 25px;
   border-radius: 5px;
+  max-height: 240px;
+  overflow-y: auto;
 }
 .selectedproducts{
   display: flex;
@@ -59,7 +72,8 @@
   }
 
   .orderTable tr:hover {
-        background-color: #ffff99;
+    cursor: pointer;
+    background-color: #ffff99;
   }
 
   .productTable {
